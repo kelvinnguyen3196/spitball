@@ -3,8 +3,10 @@
 </script>
 
 <template>
-    <h1>Spitball</h1>
-    <h2>Simple Pokemon in the Box - a Living Locator</h2>
+    <div id="title-wrapper">
+        <h1>Spitball</h1>
+        <h2>Simple Pokemon in the Box - a Living Locator</h2>
+    </div>
 </template>
 
 <style scoped>

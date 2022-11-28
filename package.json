@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueform/multiselect": "^2.5.7",
     "pinia": "^2.0.26",
     "vue": "^3.2.45"
   },

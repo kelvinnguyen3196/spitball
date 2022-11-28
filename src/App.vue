@@ -1,11 +1,13 @@
 <script setup>
 // imports
 import TheTitle from './components/TheTitle.vue';
+import TheInputs from './components/TheInputs.vue';
 </script>
 
 <template>
     <div id="page-content">
         <TheTitle />
+        <TheInputs />
     </div>
 </template>
 
@@ -34,14 +36,30 @@ import TheTitle from './components/TheTitle.vue';
 
 :root {
     --color-dark: #393E46;
-    --color-accent: #F2E7D5;
+    --color-accent: #6D9886;
     --color-light: #F7F7F7;
 
     --font-size-title: 3.6rem;
     --font-size-subtitle: 1.8rem;
+    --font-size-label: 1.6rem;
 
     --content-width: min(90vw, 140rem);
     --content-margin: min(10vw, 5rem);
+
+    /* vueform/multiselect override */
+    --ms-font-size: var(--font-size-label);
+    --ms-option-font-size: var(--font-size-label);
+    --ms-bg: var(--color-light);
+    --ms-border-color: var(--color-light);
+    --ms-dropdown-border-color: var(--color-light);
+    --ms-ring-color: none;
+
+    --ms-option-bg-pointed: var(--color-light);
+    --ms-option-color-pointed: var(--color-accent);
+    --ms-option-bg-selected: var(--color-accent);
+    --ms-option-color-selected: var(--color-light);
+    --ms-option-bg-selected-pointed: var(--color-accent);
+    --ms-option-color-selected-pointed: var(--color-light);
 }
 
 * {
@@ -53,7 +71,6 @@ import TheTitle from './components/TheTitle.vue';
 html {
     /* 1rem = 10px */
     font-size: 62.5%;
-
 }
 
 body {
@@ -75,10 +92,23 @@ h2 {
     font-size: var(--font-size-subtitle);
     color: var(--color-accent);
 }
+
+h3 {
+    font-family: 'Poppins';
+    font-weight: normal;
+    font-size: var(--font-size-label);
+    color: var(--color-light);
+}
+
+
 </style>
 
 <style>
 #page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
     margin-inline: var(--content-margin);
     max-width: var(--content-width);
     margin-block: 2rem;
