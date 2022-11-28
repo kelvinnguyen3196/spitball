@@ -27,7 +27,7 @@ const scarletViolet = useScarletVioletStore();
                 v-model="inputsStore.pokemon" 
                 :options="scarletViolet.pokedex" 
                 :searchable="true"
-                placeholder="Start typing a Pokémon name..."
+                placeholder="Start typing..."
             />
         </div>
     </div>

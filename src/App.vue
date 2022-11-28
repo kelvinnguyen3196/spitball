@@ -42,8 +42,8 @@ import TheLocation from './components/TheLocation.vue';
     --color-light: #F7F7F7;
 
     --font-size-title: 3.6rem;
-    --font-size-subtitle: 1.8rem;
-    --font-size-label: 1.6rem;
+    --font-size-subtitle: 2rem;
+    --font-size-label: 1.8rem;
 
     --content-width: min(90vw, 140rem);
     --content-margin: min(10vw, 5rem);
@@ -79,29 +79,26 @@ body {
     /* resize up font size for accessiblity */
     font-size: 1.6rem;
     background: var(--color-dark);
+    font-family: 'Poppins';
 }
 
 h1 {
-    font-family: 'Poppins';
     font-weight: bold;
     font-size: var(--font-size-title);
     color: var(--color-light);
 }
 
 h2 {
-    font-family: 'Poppins';
     font-weight: 300;
     font-size: var(--font-size-subtitle);
     color: var(--color-accent);
 }
 
 h3 {
-    font-family: 'Poppins';
-    font-weight: normal;
+    font-weight: 300;
     font-size: var(--font-size-label);
     color: var(--color-light);
 }
-
 
 </style>
 

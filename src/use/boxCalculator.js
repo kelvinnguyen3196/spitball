@@ -41,6 +41,7 @@ export function useBoxCalculator() {
 
     const getLocation = (pokemonNum) => {
         const location = {};    // empty object
+        if(!pokemonNum) return location;
         location.box = calculateBox(pokemonNum);
         // edge case - last item in box
         if(checkEdgeCase(pokemonNum)) {

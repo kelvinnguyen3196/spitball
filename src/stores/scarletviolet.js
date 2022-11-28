@@ -1,411 +1,417 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
-export const useScarletVioletStore = () => {
-    const pokedex = [
-        `Sprigatito`,
-        `Floragato`,
-        `Meowscarada`,
-        `Fuecoco`,
-        `Crocalor`,
-        `Skeledirge`,
-        `Quaxly`,
-        `Quaxwell`,
-        `Quaquaval`,
-        `Lechonk`,
-        `Oinkologne`,
-        `Tarountula`,
-        `Spidopos`,
-        `Nymble`,
-        `Lokix`,
-        `Hoppip`,
-        `Skiploom`,
-        `Jumpluff`,
-        `Fletchling`,
-        `Fletchinder`,
-        `Talonflame`,
-        `Pawmi`,
-        `Pawmo`,
-        `Pawmot`,
-        `Houndour`,
-        `Houndoom`,
-        `Yungoos`,
-        `Gumshoos`,
-        `Skwovet`,
-        `Greedent`,
-        `Sunkern`,
-        `Sunflora`,
-        `Kricketot`,
-        `Kricketune`,
-        `Scatterbug`,
-        `Spewpa`,
-        `Vivillon`,
-        `Combee`,
-        `Vespiquen`,
-        `Rookidee`,
-        `Corvisquire`,
-        `Corviknight`,
-        `Happiny`,
-        `Chansey`,
-        `Blissey`,
-        `Azurill`,
-        `Marill`,
-        `Azumarill`,
-        `Surskit`,
-        `Masquerain`,
-        `Buizel`,
-        `Floatzel`,
-        `Clodsire`,
-        `Psyduck`,
-        `Golduck`,
-        `Chewtle`,
-        `Drednaw`,
-        `Igglybuff`,
-        `Jigglypuff`,
-        `Wigglytuff`,
-        `Ralts`,
-        `Kirlia`,
-        `Gardevoir`,
-        `Gallade`,
-        `Drowzee`,
-        `Hypno`,
-        `Gastly`,
-        `Haunter`,
-        `Gengar`,
-        `Tandemaus`,
-        `Maushold`,
-        `Pichu`,
-        `Pikachu`,
-        `Raichu`,
-        `Fidough`,
-        `Dachsbun`,
-        `Slakoth`,
-        `Vigoroth`,
-        `Slaking`,
-        `Bounsweet`,
-        `Steenee`,
-        `Tsareena`,
-        `Smoliv`,
-        `Dolliv`,
-        `Arboliva`,
-        `Bonsly`,
-        `Sudowoodo`,
-        `Rockruff`,
-        `Lycanroc`,
-        `Rolycoly`,
-        `Carkol`,
-        `Coalossal`,
-        `Shinx`,
-        `Luxio`,
-        `Luxray`,
-        `Starly`,
-        `Staravia`,
-        `Staraptor`,
-        `Oricorio`,
-        `Mareep`,
-        `Flaaffy`,
-        `Ampharos`,
-        `Petilil`,
-        `Lilligant`,
-        `Shroomish`,
-        `Breloom`,
-        `Applin`,
-        `Flapple`,
-        `Appletun`,
-        `Spoink`,
-        `Grumpig`,
-        `Squawkabilly`,
-        `Misdreavus`,
-        `Mismagius`,
-        `Makuhita`,
-        `Hariyama`,
-        `Crawbrawler`,
-        `Crabominable`,
-        `Salandit`,
-        `Salazzle`,
-        `Phanpy`,
-        `Donphan`,
-        `Cufant`,
-        `Copperajah`,
-        `Gible`,
-        `Gabite`,
-        `Garchomp`,
-        `Nacli`,
-        `Naclstack`,
-        `Garganacl`,
-        `Wingull`,
-        `Pelipper`,
-        `Magikarp`,
-        `Gyarados`,
-        `Arrokuda`,
-        `Barraskewda`,
-        `Basculin`,
-        `Gulpin`,
-        `Swalot`,
-        `Meowth`,
-        `Persian`,
-        `Drifloon`,
-        `Drifblim`,
-        `Flabebe`,
-        `Floette`,
-        `Florges`,
-        `Diglett`,
-        `Dugtrio`,
-        `Torkoal`,
-        `Numel`,
-        `Camerupt`,
-        `Bronzor`,
-        `Bronzong`,
-        `Axew`,
-        `Fraxure`,
-        `Haxorus`,
-        `Mankey`,
-        `Primeape`,
-        `Meditite`,
-        `Medicham`,
-        `Riolu`,
-        `Lucario`,
-        `Charcadet`,
-        `Armarouge`,
-        `Ceruledge`,
-        `Barboach`,
-        `Whiscash`,
-        `Tadbulb`,
-        `Bellibolt`,
-        `Goomy`,
-        `Sliggoo`,
-        `Goodra`,
-        `Croagunk`,
-        `Toxicroak`,
-        `Wattrel`,
-        `Kilowattrel`,
-        `Eevee`,
-        `Vaporeon`,
-        `Jolteon`,
-        `Flareon`,
-        `Espeon`,
-        `Umbreon`,
-        `Leafeon`,
-        `Glaceon`,
-        `Sylveon`,
-        `Dunsparce`,
-        `Dudunsparce`,
-        `Deerling`,
-        `Sawsbuck`,
-        `Girafarig`,
-        `Farigiraf`,
-        `Grimer`,
-        `Muk`,
-        `Maschiff`,
-        `Mabosstiff`,
-        `Toxel`,
-        `Toxtricity`,
-        `Dedenne`,
-        `Pachirisu`,
-        `Shroodle`,
-        `Grafaiai`,
-        `Stantler`,
-        `Foongus`,
-        `Amoonguss`,
-        `Voltorb`,
-        `Electrode`,
-        `Magnemite`,
-        `Magnetite`,
-        `Magnezone`,
-        `Ditto`,
-        `Growlithe`,
-        `Arcanine`,
-        `Teddiursa`,
-        `Ursaring`,
-        `Zangoose`,
-        `Seviper`,
-        `Swablu`,
-        `Altaria`,
-        `Skiddo`,
-        `Gogoat`,
-        `Tauros (Paldean Form)`,
-        `Tauros (Aqua Breed)`,
-        `Tauros (Flame Breed)`,
-        `Litleo`,
-        `Pyroar`,
-        `Stunky`,
-        `Skuntank`,
-        `Zorua`,
-        `Zoroark`,
-        `Sneasel`,
-        `Weavile`,
-        `Murkrow`,
-        `Honchkrow`,
-        `Gothita`,
-        `Gothorita`,
-        `Gothitelle`,
-        `Sinistea`,
-        `Polteageist`,
-        `Mimikyu`,
-        `Klefki`,
-        `Indeedee`,
-        `Bramblin`,
-        `Brambleghast`,
-        `Toedscool`,
-        `Toedscruel`,
-        `Tropius`,
-        `Fomantis`,
-        `Lurantis`,
-        `Klawf`,
-        `Capsakid`,
-        `Scovillain`,
-        `Cacnea`,
-        `Cacturne`,
-        `Rellor`,
-        `Rabsca`,
-        `Venonat`,
-        `Venomoth`,
-        `Pineco`,
-        `Forretress`,
-        `Scyther`,
-        `Scizor`,
-        `Heracross`,
-        `Flittle`,
-        `Espathra`,
-        `Hippopotas`,
-        `Hoppopowdon`,
-        `Sandile`,
-        `Krokorok`,
-        `Krookodile`,
-        `Silicobra`,
-        `Sandaconda`,
-        `Mudbray`,
-        `Mudsdale`,
-        `Larvesta`,
-        `Volcarona`,
-        `Bagon`,
-        `Shelgon`,
-        `Salamence`,
-        `Tinkatink`,
-        `Tinkatuff`,
-        `Tinkaton`,
-        `Hatenna`,
-        `Hattrem`,
-        `Hatterene`,
-        `Impidimp`,
-        `Morgrem`,
-        `Grimmsnarl`,
-        `Wiglett`,
-        `Wugtrio`,
-        `Bombirdier`,
-        `Finizen`,
-        `Finizen Evo?`,
-        `Varoom`,
-        `Revavroom`,
-        `Cyclizar`,
-        `Orthworm`,
-        `Sableye`,
-        `Shuppet`,
-        `Banette`,
-        `Dusknoir`,
-        `Hawlucha`,
-        `Falinks`,
-        `Noibat`,
-        `Noivern`,
-        `Dreepy`,
-        `Drakloak`,
-        `Dragapult`,
-        `Glimmet`,
-        `Glimmora`,
-        `Rotom`,
-        `Greavard`,
-        `Houndstone`,
-        `Oranguru`,
-        `Passimian`,
-        `Komala`,
-        `Larvitar`,
-        `Pupitar`,
-        `Tyranitar`,
-        `Stonjourner`,
-        `Eiscue`,
-        `Pincurchin`,
-        `Sandygast`,
-        `Palossand`,
-        `Slowpoke`,
-        `Slowbro`,
-        `Slowking`,
-        `Shellos`,
-        `Gastrodon`,
-        `Shellder`,
-        `Cloyster`,
-        `Qwilfish`,
-        `Luvdisc`,
-        `Finneon`,
-        `Lumineon`,
-        `Bruxish`,
-        `Alomomola`,
-        `Skrelp`,
-        `Dragalge`,
-        `Clauncher`,
-        `Clawitzer`,
-        `Tynamo`,
-        `Elektrik`,
-        `Elektross`,
-        `Mareanie`,
-        `Toxapex`,
-        `Flamigo`,
-        `Dratini`,
-        `Dragonair`,
-        `Dragonite`,
-        `Snom`,
-        `Frosmoth`,
-        `Snover`,
-        `Abomasnow`,
-        `Delibird`,
-        `Cubchoo`,
-        `Beartic`,
-        `Snorunt`,
-        `Glalie`,
-        `Froslass`,
-        `Cryogonal`,
-        `Cetoddle`,
-        `Cetitan`,
-        `Bergmite`,
-        `Avalugg`,
-        `Rufflet`,
-        `Braviary`,
-        `Pawniard`,
-        `Bisharp`,
-        `Kingambit`,
-        `Deino`,
-        `Zweilous`,
-        `Hydreigon`,
-        `Veluza`,
-        `Dondozo`,
-        `Tatsugiri`,
-        `Great Tusk`,
-        `Scream Tail`,
-        `Brute Bonnet`,
-        `Flutter Mane`,
-        `Slither Wing`,
-        `Sandy Shocks`,
-        `Iron Treads`,
-        `Iron Bundle`,
-        `Iron Hands`,
-        `Iron Jugulis`,
-        `Iron Moth`,
-        `Iron Thorns`,
-        `Frigibax`,
-        `Artibax`,
-        `Baxcalibur`,
-        `Gimmighoul`,
-        `Ghouldengo`,
-        `Wo-Chien`,
-        `Chien-Pao`,
-        `Ting-Lu`,
-        `Chi-Yu`,
-        `Roaring Moon`,
-        `Iron Valiant`,
-        `Koraidon`,
-        `Miraidon`,
-    ]
+export const useScarletVioletStore = defineStore('scarletViolet', () => {
+    // #region pokedex map
+    const pokedexMap = ref(new Map());
+    pokedexMap.value.set(`Sprigatito`, 1);
+    pokedexMap.value.set(`Floragato`, 2);
+    pokedexMap.value.set(`Meowscarada`, 3);
+    pokedexMap.value.set(`Fuecoco`, 4);
+    pokedexMap.value.set(`Crocalor`, 5);
+    pokedexMap.value.set(`Skeledirge`, 6);
+    pokedexMap.value.set(`Quaxly`, 7);
+    pokedexMap.value.set(`Quaxwell`, 8);
+    pokedexMap.value.set(`Quaquaval`, 9);
+    pokedexMap.value.set(`Lechonk`, 10);
+    pokedexMap.value.set(`Oinkologne`, 11);
+    pokedexMap.value.set(`Tarountula`, 12);
+    pokedexMap.value.set(`Spidopos`, 13);
+    pokedexMap.value.set(`Nymble`, 14);
+    pokedexMap.value.set(`Lokix`, 15);
+    pokedexMap.value.set(`Hoppip`, 16);
+    pokedexMap.value.set(`Skiploom`, 17);
+    pokedexMap.value.set(`Jumpluff`, 18);
+    pokedexMap.value.set(`Fletchling`, 19);
+    pokedexMap.value.set(`Fletchinder`, 20);
+    pokedexMap.value.set(`Talonflame`, 21);
+    pokedexMap.value.set(`Pawmi`, 22);
+    pokedexMap.value.set(`Pawmo`, 23);
+    pokedexMap.value.set(`Pawmot`, 24);
+    pokedexMap.value.set(`Houndour`, 25);
+    pokedexMap.value.set(`Houndoom`, 26);
+    pokedexMap.value.set(`Yungoos`, 27);
+    pokedexMap.value.set(`Gumshoos`, 28);
+    pokedexMap.value.set(`Skwovet`, 29);
+    pokedexMap.value.set(`Greedent`, 30);
+    pokedexMap.value.set(`Sunkern`, 31);
+    pokedexMap.value.set(`Sunflora`, 32);
+    pokedexMap.value.set(`Kricketot`, 33);
+    pokedexMap.value.set(`Kricketune`, 34);
+    pokedexMap.value.set(`Scatterbug`, 35);
+    pokedexMap.value.set(`Spewpa`, 36);
+    pokedexMap.value.set(`Vivillon`, 37);
+    pokedexMap.value.set(`Combee`, 38);
+    pokedexMap.value.set(`Vespiquen`, 39);
+    pokedexMap.value.set(`Rookidee`, 40);
+    pokedexMap.value.set(`Corvisquire`, 41);
+    pokedexMap.value.set(`Corviknight`, 42);
+    pokedexMap.value.set(`Happiny`, 43);
+    pokedexMap.value.set(`Chansey`, 44);
+    pokedexMap.value.set(`Blissey`, 45);
+    pokedexMap.value.set(`Azurill`, 46);
+    pokedexMap.value.set(`Marill`, 47);
+    pokedexMap.value.set(`Azumarill`, 48);
+    pokedexMap.value.set(`Surskit`, 49);
+    pokedexMap.value.set(`Masquerain`, 50);
+    pokedexMap.value.set(`Buizel`, 51);
+    pokedexMap.value.set(`Floatzel`, 52);
+    pokedexMap.value.set(`Clodsire`, 53);
+    pokedexMap.value.set(`Psyduck`, 54);
+    pokedexMap.value.set(`Golduck`, 55);
+    pokedexMap.value.set(`Chewtle`, 56);
+    pokedexMap.value.set(`Drednaw`, 57);
+    pokedexMap.value.set(`Igglybuff`, 58);
+    pokedexMap.value.set(`Jigglypuff`, 59);
+    pokedexMap.value.set(`Wigglytuff`, 60);
+    pokedexMap.value.set(`Ralts`, 61);
+    pokedexMap.value.set(`Kirlia`, 62);
+    pokedexMap.value.set(`Gardevoir`, 63);
+    pokedexMap.value.set(`Gallade`, 64);
+    pokedexMap.value.set(`Drowzee`, 65);
+    pokedexMap.value.set(`Hypno`, 66);
+    pokedexMap.value.set(`Gastly`, 67);
+    pokedexMap.value.set(`Haunter`, 68);
+    pokedexMap.value.set(`Gengar`, 69);
+    pokedexMap.value.set(`Tandemaus`, 70);
+    pokedexMap.value.set(`Maushold`, 71);
+    pokedexMap.value.set(`Pichu`, 72);
+    pokedexMap.value.set(`Pikachu`, 73);
+    pokedexMap.value.set(`Raichu`, 74);
+    pokedexMap.value.set(`Fidough`, 75);
+    pokedexMap.value.set(`Dachsbun`, 76);
+    pokedexMap.value.set(`Slakoth`, 77);
+    pokedexMap.value.set(`Vigoroth`, 78);
+    pokedexMap.value.set(`Slaking`, 79);
+    pokedexMap.value.set(`Bounsweet`, 80);
+    pokedexMap.value.set(`Steenee`, 81);
+    pokedexMap.value.set(`Tsareena`, 82);
+    pokedexMap.value.set(`Smoliv`, 83);
+    pokedexMap.value.set(`Dolliv`, 84);
+    pokedexMap.value.set(`Arboliva`, 85);
+    pokedexMap.value.set(`Bonsly`, 86);
+    pokedexMap.value.set(`Sudowoodo`, 87);
+    pokedexMap.value.set(`Rockruff`, 88);
+    pokedexMap.value.set(`Lycanroc`, 89);
+    pokedexMap.value.set(`Rolycoly`, 90);
+    pokedexMap.value.set(`Carkol`, 91);
+    pokedexMap.value.set(`Coalossal`, 92);
+    pokedexMap.value.set(`Shinx`, 93);
+    pokedexMap.value.set(`Luxio`, 94);
+    pokedexMap.value.set(`Luxray`, 95);
+    pokedexMap.value.set(`Starly`, 96);
+    pokedexMap.value.set(`Staravia`, 97);
+    pokedexMap.value.set(`Staraptor`, 98);
+    pokedexMap.value.set(`Oricorio`, 99);
+    pokedexMap.value.set(`Mareep`, 100);
+    pokedexMap.value.set(`Flaaffy`, 101);
+    pokedexMap.value.set(`Ampharos`, 102);
+    pokedexMap.value.set(`Petilil`, 103);
+    pokedexMap.value.set(`Lilligant`, 104);
+    pokedexMap.value.set(`Shroomish`, 105);
+    pokedexMap.value.set(`Breloom`, 106);
+    pokedexMap.value.set(`Applin`, 107);
+    pokedexMap.value.set(`Flapple`, 108);
+    pokedexMap.value.set(`Appletun`, 109);
+    pokedexMap.value.set(`Spoink`, 110);
+    pokedexMap.value.set(`Grumpig`, 111);
+    pokedexMap.value.set(`Squawkabilly`, 112);
+    pokedexMap.value.set(`Misdreavus`, 113);
+    pokedexMap.value.set(`Mismagius`, 114);
+    pokedexMap.value.set(`Makuhita`, 115);
+    pokedexMap.value.set(`Hariyama`, 116);
+    pokedexMap.value.set(`Crawbrawler`, 117);
+    pokedexMap.value.set(`Crabominable`, 118);
+    pokedexMap.value.set(`Salandit`, 119);
+    pokedexMap.value.set(`Salazzle`, 120);
+    pokedexMap.value.set(`Phanpy`, 121);
+    pokedexMap.value.set(`Donphan`, 122);
+    pokedexMap.value.set(`Cufant`, 123);
+    pokedexMap.value.set(`Copperajah`, 124);
+    pokedexMap.value.set(`Gible`, 125);
+    pokedexMap.value.set(`Gabite`, 126);
+    pokedexMap.value.set(`Garchomp`, 127);
+    pokedexMap.value.set(`Nacli`, 128);
+    pokedexMap.value.set(`Naclstack`, 129);
+    pokedexMap.value.set(`Garganacl`, 130);
+    pokedexMap.value.set(`Wingull`, 131);
+    pokedexMap.value.set(`Pelipper`, 132);
+    pokedexMap.value.set(`Magikarp`, 133);
+    pokedexMap.value.set(`Gyarados`, 134);
+    pokedexMap.value.set(`Arrokuda`, 135);
+    pokedexMap.value.set(`Barraskewda`, 136);
+    pokedexMap.value.set(`Basculin`, 137);
+    pokedexMap.value.set(`Gulpin`, 138);
+    pokedexMap.value.set(`Swalot`, 139);
+    pokedexMap.value.set(`Meowth`, 140);
+    pokedexMap.value.set(`Persian`, 141);
+    pokedexMap.value.set(`Drifloon`, 142);
+    pokedexMap.value.set(`Drifblim`, 143);
+    pokedexMap.value.set(`Flabebe`, 144);
+    pokedexMap.value.set(`Floette`, 145);
+    pokedexMap.value.set(`Florges`, 146);
+    pokedexMap.value.set(`Diglett`, 147);
+    pokedexMap.value.set(`Dugtrio`, 148);
+    pokedexMap.value.set(`Torkoal`, 149);
+    pokedexMap.value.set(`Numel`, 150);
+    pokedexMap.value.set(`Camerupt`, 151);
+    pokedexMap.value.set(`Bronzor`, 152);
+    pokedexMap.value.set(`Bronzong`, 153);
+    pokedexMap.value.set(`Axew`, 154);
+    pokedexMap.value.set(`Fraxure`, 155);
+    pokedexMap.value.set(`Haxorus`, 156);
+    pokedexMap.value.set(`Mankey`, 157);
+    pokedexMap.value.set(`Primeape`, 158);
+    pokedexMap.value.set(`Meditite`, 159);
+    pokedexMap.value.set(`Medicham`, 160);
+    pokedexMap.value.set(`Riolu`, 161);
+    pokedexMap.value.set(`Lucario`, 162);
+    pokedexMap.value.set(`Charcadet`, 163);
+    pokedexMap.value.set(`Armarouge`, 164);
+    pokedexMap.value.set(`Ceruledge`, 165);
+    pokedexMap.value.set(`Barboach`, 166);
+    pokedexMap.value.set(`Whiscash`, 167);
+    pokedexMap.value.set(`Tadbulb`, 168);
+    pokedexMap.value.set(`Bellibolt`, 169);
+    pokedexMap.value.set(`Goomy`, 170);
+    pokedexMap.value.set(`Sliggoo`, 171);
+    pokedexMap.value.set(`Goodra`, 172);
+    pokedexMap.value.set(`Croagunk`, 173);
+    pokedexMap.value.set(`Toxicroak`, 174);
+    pokedexMap.value.set(`Wattrel`, 175);
+    pokedexMap.value.set(`Kilowattrel`, 176);
+    pokedexMap.value.set(`Eevee`, 177);
+    pokedexMap.value.set(`Vaporeon`, 178);
+    pokedexMap.value.set(`Jolteon`, 179);
+    pokedexMap.value.set(`Flareon`, 180);
+    pokedexMap.value.set(`Espeon`, 181);
+    pokedexMap.value.set(`Umbreon`, 182);
+    pokedexMap.value.set(`Leafeon`, 183);
+    pokedexMap.value.set(`Glaceon`, 184);
+    pokedexMap.value.set(`Sylveon`, 185);
+    pokedexMap.value.set(`Dunsparce`, 186);
+    pokedexMap.value.set(`Dudunsparce`, 187);
+    pokedexMap.value.set(`Deerling`, 188);
+    pokedexMap.value.set(`Sawsbuck`, 189);
+    pokedexMap.value.set(`Girafarig`, 190);
+    pokedexMap.value.set(`Farigiraf`, 191);
+    pokedexMap.value.set(`Grimer`, 192);
+    pokedexMap.value.set(`Muk`, 193);
+    pokedexMap.value.set(`Maschiff`, 194);
+    pokedexMap.value.set(`Mabosstiff`, 195);
+    pokedexMap.value.set(`Toxel`, 196);
+    pokedexMap.value.set(`Toxtricity`, 197);
+    pokedexMap.value.set(`Dedenne`, 198);
+    pokedexMap.value.set(`Pachirisu`, 199);
+    pokedexMap.value.set(`Shroodle`, 200);
+    pokedexMap.value.set(`Grafaiai`, 201);
+    pokedexMap.value.set(`Stantler`, 202);
+    pokedexMap.value.set(`Foongus`, 203);
+    pokedexMap.value.set(`Amoonguss`, 204);
+    pokedexMap.value.set(`Voltorb`, 205);
+    pokedexMap.value.set(`Electrode`, 206);
+    pokedexMap.value.set(`Magnemite`, 207);
+    pokedexMap.value.set(`Magnetite`, 208);
+    pokedexMap.value.set(`Magnezone`, 209);
+    pokedexMap.value.set(`Ditto`, 210);
+    pokedexMap.value.set(`Growlithe`, 211);
+    pokedexMap.value.set(`Arcanine`, 212);
+    pokedexMap.value.set(`Teddiursa`, 213);
+    pokedexMap.value.set(`Ursaring`, 214);
+    pokedexMap.value.set(`Zangoose`, 215);
+    pokedexMap.value.set(`Seviper`, 216);
+    pokedexMap.value.set(`Swablu`, 217);
+    pokedexMap.value.set(`Altaria`, 218);
+    pokedexMap.value.set(`Skiddo`, 219);
+    pokedexMap.value.set(`Gogoat`, 220);
+    pokedexMap.value.set(`Tauros (Paldean Form)`, 221);
+    pokedexMap.value.set(`Tauros (Aqua Breed)`, 222);
+    pokedexMap.value.set(`Tauros (Flame Breed)`, 223);
+    pokedexMap.value.set(`Litleo`, 224);
+    pokedexMap.value.set(`Pyroar`, 225);
+    pokedexMap.value.set(`Stunky`, 226);
+    pokedexMap.value.set(`Skuntank`, 227);
+    pokedexMap.value.set(`Zorua`, 228);
+    pokedexMap.value.set(`Zoroark`, 229);
+    pokedexMap.value.set(`Sneasel`, 230);
+    pokedexMap.value.set(`Weavile`, 231);
+    pokedexMap.value.set(`Murkrow`, 232);
+    pokedexMap.value.set(`Honchkrow`, 233);
+    pokedexMap.value.set(`Gothita`, 234);
+    pokedexMap.value.set(`Gothorita`, 235);
+    pokedexMap.value.set(`Gothitelle`, 236);
+    pokedexMap.value.set(`Sinistea`, 237);
+    pokedexMap.value.set(`Polteageist`, 238);
+    pokedexMap.value.set(`Mimikyu`, 239);
+    pokedexMap.value.set(`Klefki`, 240);
+    pokedexMap.value.set(`Indeedee`, 241);
+    pokedexMap.value.set(`Bramblin`, 242);
+    pokedexMap.value.set(`Brambleghast`, 243);
+    pokedexMap.value.set(`Toedscool`, 244);
+    pokedexMap.value.set(`Toedscruel`, 245);
+    pokedexMap.value.set(`Tropius`, 246);
+    pokedexMap.value.set(`Fomantis`, 247);
+    pokedexMap.value.set(`Lurantis`, 248);
+    pokedexMap.value.set(`Klawf`, 249);
+    pokedexMap.value.set(`Capsakid`, 250);
+    pokedexMap.value.set(`Scovillain`, 251);
+    pokedexMap.value.set(`Cacnea`, 252);
+    pokedexMap.value.set(`Cacturne`, 253);
+    pokedexMap.value.set(`Rellor`, 254);
+    pokedexMap.value.set(`Rabsca`, 255);
+    pokedexMap.value.set(`Venonat`, 256);
+    pokedexMap.value.set(`Venomoth`, 257);
+    pokedexMap.value.set(`Pineco`, 258);
+    pokedexMap.value.set(`Forretress`, 259);
+    pokedexMap.value.set(`Scyther`, 260);
+    pokedexMap.value.set(`Scizor`, 261);
+    pokedexMap.value.set(`Heracross`, 262);
+    pokedexMap.value.set(`Flittle`, 263);
+    pokedexMap.value.set(`Espathra`, 264);
+    pokedexMap.value.set(`Hippopotas`, 265);
+    pokedexMap.value.set(`Hoppopowdon`, 266);
+    pokedexMap.value.set(`Sandile`, 267);
+    pokedexMap.value.set(`Krokorok`, 268);
+    pokedexMap.value.set(`Krookodile`, 269);
+    pokedexMap.value.set(`Silicobra`, 270);
+    pokedexMap.value.set(`Sandaconda`, 271);
+    pokedexMap.value.set(`Mudbray`, 272);
+    pokedexMap.value.set(`Mudsdale`, 273);
+    pokedexMap.value.set(`Larvesta`, 274);
+    pokedexMap.value.set(`Volcarona`, 275);
+    pokedexMap.value.set(`Bagon`, 276);
+    pokedexMap.value.set(`Shelgon`, 277);
+    pokedexMap.value.set(`Salamence`, 278);
+    pokedexMap.value.set(`Tinkatink`, 279);
+    pokedexMap.value.set(`Tinkatuff`, 280);
+    pokedexMap.value.set(`Tinkaton`, 281);
+    pokedexMap.value.set(`Hatenna`, 282);
+    pokedexMap.value.set(`Hattrem`, 283);
+    pokedexMap.value.set(`Hatterene`, 284);
+    pokedexMap.value.set(`Impidimp`, 285);
+    pokedexMap.value.set(`Morgrem`, 286);
+    pokedexMap.value.set(`Grimmsnarl`, 287);
+    pokedexMap.value.set(`Wiglett`, 288);
+    pokedexMap.value.set(`Wugtrio`, 289);
+    pokedexMap.value.set(`Bombirdier`, 290);
+    pokedexMap.value.set(`Finizen`, 291);
+    pokedexMap.value.set(`Finizen Evo?`, 292);
+    pokedexMap.value.set(`Varoom`, 293);
+    pokedexMap.value.set(`Revavroom`, 294);
+    pokedexMap.value.set(`Cyclizar`, 295);
+    pokedexMap.value.set(`Orthworm`, 296);
+    pokedexMap.value.set(`Sableye`, 297);
+    pokedexMap.value.set(`Shuppet`, 298);
+    pokedexMap.value.set(`Banette`, 299);
+    pokedexMap.value.set(`Dusknoir`, 300);
+    pokedexMap.value.set(`Hawlucha`, 301);
+    pokedexMap.value.set(`Falinks`, 302);
+    pokedexMap.value.set(`Noibat`, 303);
+    pokedexMap.value.set(`Noivern`, 304);
+    pokedexMap.value.set(`Dreepy`, 305);
+    pokedexMap.value.set(`Drakloak`, 306);
+    pokedexMap.value.set(`Dragapult`, 307);
+    pokedexMap.value.set(`Glimmet`, 308);
+    pokedexMap.value.set(`Glimmora`, 309);
+    pokedexMap.value.set(`Rotom`, 310);
+    pokedexMap.value.set(`Greavard`, 311);
+    pokedexMap.value.set(`Houndstone`, 312);
+    pokedexMap.value.set(`Oranguru`, 313);
+    pokedexMap.value.set(`Passimian`, 314);
+    pokedexMap.value.set(`Komala`, 315);
+    pokedexMap.value.set(`Larvitar`, 316);
+    pokedexMap.value.set(`Pupitar`, 317);
+    pokedexMap.value.set(`Tyranitar`, 318);
+    pokedexMap.value.set(`Stonjourner`, 319);
+    pokedexMap.value.set(`Eiscue`, 320);
+    pokedexMap.value.set(`Pincurchin`, 321);
+    pokedexMap.value.set(`Sandygast`, 322);
+    pokedexMap.value.set(`Palossand`, 323);
+    pokedexMap.value.set(`Slowpoke`, 324);
+    pokedexMap.value.set(`Slowbro`, 325);
+    pokedexMap.value.set(`Slowking`, 326);
+    pokedexMap.value.set(`Shellos`, 327);
+    pokedexMap.value.set(`Gastrodon`, 328);
+    pokedexMap.value.set(`Shellder`, 329);
+    pokedexMap.value.set(`Cloyster`, 330);
+    pokedexMap.value.set(`Qwilfish`, 331);
+    pokedexMap.value.set(`Luvdisc`, 332);
+    pokedexMap.value.set(`Finneon`, 333);
+    pokedexMap.value.set(`Lumineon`, 334);
+    pokedexMap.value.set(`Bruxish`, 335);
+    pokedexMap.value.set(`Alomomola`, 336);
+    pokedexMap.value.set(`Skrelp`, 337);
+    pokedexMap.value.set(`Dragalge`, 338);
+    pokedexMap.value.set(`Clauncher`, 339);
+    pokedexMap.value.set(`Clawitzer`, 340);
+    pokedexMap.value.set(`Tynamo`, 341);
+    pokedexMap.value.set(`Elektrik`, 342);
+    pokedexMap.value.set(`Elektross`, 343);
+    pokedexMap.value.set(`Mareanie`, 344);
+    pokedexMap.value.set(`Toxapex`, 345);
+    pokedexMap.value.set(`Flamigo`, 346);
+    pokedexMap.value.set(`Dratini`, 347);
+    pokedexMap.value.set(`Dragonair`, 348);
+    pokedexMap.value.set(`Dragonite`, 349);
+    pokedexMap.value.set(`Snom`, 350);
+    pokedexMap.value.set(`Frosmoth`, 351);
+    pokedexMap.value.set(`Snover`, 352);
+    pokedexMap.value.set(`Abomasnow`, 353);
+    pokedexMap.value.set(`Delibird`, 354);
+    pokedexMap.value.set(`Cubchoo`, 355);
+    pokedexMap.value.set(`Beartic`, 356);
+    pokedexMap.value.set(`Snorunt`, 357);
+    pokedexMap.value.set(`Glalie`, 358);
+    pokedexMap.value.set(`Froslass`, 359);
+    pokedexMap.value.set(`Cryogonal`, 360);
+    pokedexMap.value.set(`Cetoddle`, 361);
+    pokedexMap.value.set(`Cetitan`, 362);
+    pokedexMap.value.set(`Bergmite`, 363);
+    pokedexMap.value.set(`Avalugg`, 364);
+    pokedexMap.value.set(`Rufflet`, 365);
+    pokedexMap.value.set(`Braviary`, 366);
+    pokedexMap.value.set(`Pawniard`, 367);
+    pokedexMap.value.set(`Bisharp`, 368);
+    pokedexMap.value.set(`Kingambit`, 369);
+    pokedexMap.value.set(`Deino`, 370);
+    pokedexMap.value.set(`Zweilous`, 371);
+    pokedexMap.value.set(`Hydreigon`, 372);
+    pokedexMap.value.set(`Veluza`, 373);
+    pokedexMap.value.set(`Dondozo`, 374);
+    pokedexMap.value.set(`Tatsugiri`, 375);
+    pokedexMap.value.set(`Great Tusk`, 376);
+    pokedexMap.value.set(`Scream Tail`, 377);
+    pokedexMap.value.set(`Brute Bonnet`, 378);
+    pokedexMap.value.set(`Flutter Mane`, 379);
+    pokedexMap.value.set(`Slither Wing`, 380);
+    pokedexMap.value.set(`Sandy Shocks`, 381);
+    pokedexMap.value.set(`Iron Treads`, 382);
+    pokedexMap.value.set(`Iron Bundle`, 383);
+    pokedexMap.value.set(`Iron Hands`, 384);
+    pokedexMap.value.set(`Iron Jugulis`, 385);
+    pokedexMap.value.set(`Iron Moth`, 386);
+    pokedexMap.value.set(`Iron Thorns`, 387);
+    pokedexMap.value.set(`Frigibax`, 388);
+    pokedexMap.value.set(`Artibax`, 389);
+    pokedexMap.value.set(`Baxcalibur`, 390);
+    pokedexMap.value.set(`Gimmighoul`, 391);
+    pokedexMap.value.set(`Ghouldengo`, 392);
+    pokedexMap.value.set(`Wo-Chien`, 393);
+    pokedexMap.value.set(`Chien-Pao`, 394);
+    pokedexMap.value.set(`Ting-Lu`, 395);
+    pokedexMap.value.set(`Chi-Yu`, 396);
+    pokedexMap.value.set(`Roaring Moon`, 397);
+    pokedexMap.value.set(`Iron Valiant`, 398);
+    pokedexMap.value.set(`Koraidon`, 399);
+    pokedexMap.value.set(`Miraidon`, 400);
+    // #endregion
+    
+    const pokedex = computed(() => {
+        return Array.from(pokedexMap.value.keys());
+    });
 
     return {
+        pokedexMap,
         pokedex
     }
-}
+});
