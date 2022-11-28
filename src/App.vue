@@ -4,7 +4,9 @@ import TheTitle from './components/TheTitle.vue';
 </script>
 
 <template>
-	<TheTitle />
+    <div id="page-content">
+        <TheTitle />
+    </div>
 </template>
 
 <style>
@@ -30,27 +32,33 @@ import TheTitle from './components/TheTitle.vue';
     font-size: normal;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
+:root {
     --color-dark: #393E46;
     --color-accent: #F2E7D5;
     --color-light: #F7F7F7;
 
-    --font-size-title: 36px;
-    --font-size-subtitle: 18px;
+    --font-size-title: 3.6rem;
+    --font-size-subtitle: 1.8rem;
+
+    --content-width: min(90vw, 140rem);
+    --content-margin: min(10vw, 5rem);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-    /* 1rem = 1px */
-    font-size: 6.25%;
+    /* 1rem = 10px */
+    font-size: 62.5%;
+
 }
 
 body {
     /* resize up font size for accessiblity */
-    font-size: 16rem;
+    font-size: 1.6rem;
     background: var(--color-dark);
 }
 
@@ -66,5 +74,12 @@ h2 {
     font-weight: 300;
     font-size: var(--font-size-subtitle);
     color: var(--color-accent);
+}
+</style>
+
+<style>
+#page-content {
+    margin-inline: var(--content-margin);
+    max-width: var(--content-width);
 }
 </style>
