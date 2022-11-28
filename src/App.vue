@@ -81,5 +81,6 @@ h2 {
 #page-content {
     margin-inline: var(--content-margin);
     max-width: var(--content-width);
+    margin-block: 2rem;
 }
 </style>
