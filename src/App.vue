@@ -2,12 +2,14 @@
 // imports
 import TheTitle from './components/TheTitle.vue';
 import TheInputs from './components/TheInputs.vue';
+import TheLocation from './components/TheLocation.vue';
 </script>
 
 <template>
     <div id="page-content">
         <TheTitle />
         <TheInputs />
+        <TheLocation />
     </div>
 </template>
 

@@ -39,6 +39,7 @@ const scarletViolet = useScarletVioletStore();
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-width: 50rem;
 }
 .input-container {
     font-family: 'Poppins';
